@@ -47,5 +47,5 @@ public class InitialValue {
     public static String ERROR_RATE_PATH="error_rate.csv";
     public static String LAST_DIRECTION_PATH="last_target_ill.csv";
     public static String CHANGE_ILL_PATH="change_erro_rate.csv";
-
+    public static String ALL_LX_PATH="all_lx.csv";
 }

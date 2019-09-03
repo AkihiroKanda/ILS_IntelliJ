@@ -234,5 +234,8 @@ public class ILS {
 		light[11][2].set_dire(0);
 		light[11][3].set_dire(0);*/
     }
+    public void calcAveLx(int allDire[][], Logger log){
+        calcAve aveLx = new calcAve(allDire,light,log);
+    }
 
 }

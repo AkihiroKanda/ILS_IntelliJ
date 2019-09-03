@@ -34,6 +34,7 @@ class Logger {
         InitialValue.ERROR_RATE_PATH=path+"/"+InitialValue.ERROR_RATE_PATH;
         InitialValue.LAST_DIRECTION_PATH=path+"/"+InitialValue.LAST_DIRECTION_PATH;
         InitialValue.CHANGE_ILL_PATH=path+"/"+InitialValue.CHANGE_ILL_PATH;
+        InitialValue.ALL_LX_PATH=path+"/"+InitialValue.ALL_LX_PATH;
     }
 
     /*********** 照度履歴をCSVファイル出力  lx_log  **************************/
@@ -308,6 +309,30 @@ class Logger {
             pw.print(",Sensor"+(senRan[1]+1)+","+sensor[senRan[1]].get_Target_LX()+","+sensor[senRan[1]].get_Current_LX()+","+errorRate[1]);
 
             pw.println();
+            pw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*********** 部屋全体の照度をCSVファイル出力  ave_lx_log  **************************/
+    public void all_lx_log(double allLx[][]){
+        try {
+            fw = new FileWriter(InitialValue.ALL_LX_PATH, true);  //※１true:追記．false:上書き
+            pw = new PrintWriter(new BufferedWriter(fw));
+
+            for (int j=0; j<InitialValue.KC_X; j++) {
+                pw.print(","+j*5);
+            }
+            pw.println();
+            for (int i = InitialValue.KC_Y-1; i>=0; i--) {
+                pw.print((i*5)+",");
+                for (int j=0; j<InitialValue.KC_X; j++) {
+                    pw.print(allLx[i][j]+",");
+                }
+                pw.println();
+            }
+
             pw.close();
         } catch (IOException e) {
             e.printStackTrace();

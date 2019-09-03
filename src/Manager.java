@@ -27,10 +27,10 @@ public class Manager {
         //log = new Logger(); //照明ログの出力するオブジェクト
         //ILS ils=new ILS();
         //センサの設定
-        //set_Target_Ill(ils,simu_num);		//目標照度自動設定
-        set_Target_Ill_self(ils);		//目標照度，配光方向入力
+        set_Target_Ill(ils,simu_num);		//目標照度自動設定
+        //set_Target_Ill_self(ils);		//目標照度，配光方向入力
         ils.Target_ill(log);	//目標照度ログ
-        //ils.setdire(allDire[simu_num]);//配光方向の決定
+        ils.setdire(allDire[simu_num]);//配光方向の決定
 
         //影響度係数の取得
         ils.readInf();
@@ -41,6 +41,7 @@ public class Manager {
         ils.show_Sensor();	//照度表示
         ils.Error_rate(log, simu_num, 0);//標準手法平均照度誤差率
         ils.Power(log, simu_num, 0);//消費電力標準手法
+        ils.calcAveLx(allDire, log); //机上面均斉度の計算
 
         //ランダムな目標照度の変更
         //for (int i = 0; i < 1; i++) {
@@ -176,9 +177,9 @@ public class Manager {
             for(int i=0;i<InitialValue.SIMULATION_COUNT;i++){
                 for(int j=0;j<InitialValue.LIGHT_NUM*4;j++){
                     allDire[i][j]=Integer.parseInt(data[i][j]);
-                    //System.out.print(allDire[i][j]+",");
+                    System.out.print(allDire[i][j]+",");
                 }
-                //System.out.println();
+                System.out.println();
             }
         } catch (IOException e) {
             System.out.println(e);
