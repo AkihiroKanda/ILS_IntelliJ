@@ -35,6 +35,7 @@ class Logger {
         InitialValue.LAST_DIRECTION_PATH=path+"/"+InitialValue.LAST_DIRECTION_PATH;
         InitialValue.CHANGE_ILL_PATH=path+"/"+InitialValue.CHANGE_ILL_PATH;
         InitialValue.ALL_LX_PATH=path+"/"+InitialValue.ALL_LX_PATH;
+        InitialValue.AVE_LX_PATH=path+"/"+InitialValue.AVE_LX_PATH;
     }
 
     /*********** 照度履歴をCSVファイル出力  lx_log  **************************/
@@ -332,6 +333,22 @@ class Logger {
                 }
                 pw.println();
             }
+
+            pw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    /*********** 机上面均斉度をCSVファイル出力  ave_lx_log  **************************/
+    public void ave_lx_log(double E_u[]){
+        try {
+            fw = new FileWriter(InitialValue.AVE_LX_PATH, true);  //※１true:追記．false:上書き
+            pw = new PrintWriter(new BufferedWriter(fw));
+
+            for (int i = 0; i<InitialValue.SENSOR_NUM; i++) {
+                pw.print(E_u[i]+",");
+            }
+            pw.println();
 
             pw.close();
         } catch (IOException e) {

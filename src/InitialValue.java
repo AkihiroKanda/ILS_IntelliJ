@@ -22,9 +22,13 @@ public class InitialValue {
     public final static int KC_X=600/5+1;								//kc111x座標
     public final static int KC_Y=480/5+1;		    					//kc111y座標
 
+    //均斉度測定条件
+    public final static int U_X=6;                                      //デスク1台のx座標における測定点
+    public final static int U_Y=11;                                     //デスク2台のx座標における測定点
+
     //シミュレーション条件
     public final static int DIRE_COUNT=1;								//方向を変える回数
-    public final static int SIMULATION_COUNT=1;							//方向を変える回数
+    public final static int SIMULATION_COUNT=3;							//方向を変える回数
 
     //最急降下法
     public final static int MAX_STEP =250;								//最大ステップ数
@@ -48,4 +52,5 @@ public class InitialValue {
     public static String LAST_DIRECTION_PATH="last_target_ill.csv";
     public static String CHANGE_ILL_PATH="change_erro_rate.csv";
     public static String ALL_LX_PATH="all_lx.csv";
+    public static String AVE_LX_PATH="ave_lx.csv";
 }
